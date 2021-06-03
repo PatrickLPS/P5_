@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="product.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Orinoco">
+        <title>Orinico</title>
+    </head>
+    <body>
+        
+      <header><nav>
+          <ul class="icon">
+            <li class="icon__description"><a href="panier.html"><p>Panier</p></a><i class="fas fa-cart-arrow-down"></i><div class="item__number"></div></li>
+          </ul>
+        </nav>
+        <figure>
+          <a href="index.html"></a>
+        </figure>
+        
+
+      </header>
+      <main id="main">
+        <div class="e">
+          <h1 class="titre">Notre gamme d'Appareil Photo</h1>
+        
+
+      </main>
+
+      <footer>
+        <a href="index.html"><b>Mentions légales</b></a>
+        <a href="mailto:totalrecall@tomars.com"><b>Contactez-nous</b></a>
+      </footer>
+      <script>
+          document.addEventListener('DOMContentLoaded', async _ => {
+  // your implementation
+  try {  const USP = new URLSearchParams(location.search)
+      const id=(USP.get('id'))
+
+    const api= "https://orinoco-p5.herokuapp.com/api/furniture" +id
+    const camera = await ( await fetch(api)).json() 
+    console.log (camera)
+    let html = ""
+    html += `<div>${camera.name}</div>`
+        html += `<strong>${camera.price}</strong>`
+        html += `<a href="product.html?id=${camera._id}"> <img src="${camera.imageUrl}"/></a>`
+        html += `<p>${camera.description}</p>` 
+         
+      document.querySelector("#templateArticle").innerHTML=html
+         
+
+        } catch (e) {
+    console.warn(e)
+  }
+})
+      </script>
+    </body>
+</html>
